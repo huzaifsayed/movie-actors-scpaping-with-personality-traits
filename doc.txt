@@ -1,14 +1,10 @@
 For Personality - 
 cd personality
-python get_personality.py
+python flask_app.py
 
 For Scraper - 
 cd scraper
 scrapy crawl actors
-
-For Flask -
-cd flask
-python flask_app.py
 
 Libraries Used - 
 pip install scrapy
