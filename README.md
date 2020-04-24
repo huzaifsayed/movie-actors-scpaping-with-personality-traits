@@ -7,6 +7,10 @@ This app is divided into two parts
 1. scraper folder - where all web scraping is done and data is store in database (SQLite3)
 2. personality folder - where data is displayed on browser using Flask and Personality Prediction is done using IBM Watson - Personality Insights
 
+You will find database at - `scraper/database/`
+
+Video in this project will explain how to run the application
+
 #### Install all libraries
 `pip install -r requirements.txt`
 
