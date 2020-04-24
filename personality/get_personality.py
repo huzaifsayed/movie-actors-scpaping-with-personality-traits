@@ -14,8 +14,8 @@ class Personality:
         return result
     
     def ibm_watson_data(self):
-        url = 'https://api.eu-gb.personality-insights.watson.cloud.ibm.com/instances/18ed6fd4-cb1d-4ec2-954e-29b8934ca84c'
-        apikey = 'jtwt-9a5t51pF3hGTPcNN6r8FkrtZsdDlFPxyW-_PBQT'
+        url = 'your-url'
+        apikey = 'your-key'
         service = PersonalityInsightsV3(url=url , iam_apikey=apikey , version='2017-10-13' )
         if len(re.findall('\w+', self.text)) > 150:
             data = service.profile(self.text, content_type='text/plain').get_result()
