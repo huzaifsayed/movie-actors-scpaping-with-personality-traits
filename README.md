@@ -2,6 +2,8 @@ Project Scrapes IMDB Website for collecting data of movie actors. After Scraping
 
 I have build this project using Scrapy, Flask and IBM Watson Personality Insights
 
+NOTE - Make sure you change the api-key and url in `personality/get_personality.py`
+
 ## How to Run
 This app is divided into two parts
 1. scraper folder - where all web scraping is done and data is store in database (SQLite3)
