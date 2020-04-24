@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Actor Personality Traits</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+</head>
+
+<body>
+
+    <div class="container text-center">
+        <h2>Actor Personality Traits</h2>
+        <p>Using Scrapy and IBM Watson to Scrape Personality of Movie Celebrities</p>
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th scope="col">#</th>
+                    <th scope="col">Image</th>
+                    <th scope="col">Name</th>
+                    <th scope="col">Action</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for row in rows %}
+                <tr>
+                    <th scope="row" style='text-align:center;vertical-align:middle'>{{row["id"]}}</th>
+                    <td><img src="{{row['actor_imagelink']}}" alt=""></td>
+                    <td style='text-align:center;vertical-align:middle'>{{row["actor_name"]}}</td>
+                    <td style='text-align:center;vertical-align:middle'>
+                        <a href="/actor/detail/{{row['id']}}">View Personality</a>
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Actor Personality Traits</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+    <style>
+        #loader {
+            border: 12px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 12px solid #444444;
+            width: 70px;
+            height: 70px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .center {
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            margin: auto;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container text-center">
+        <h2>Actor Personality Traits</h2>
+        <p>Using Scrapy and IBM Watson to Scrape Personality of Movie Celebrities</p>
+        <hr />
+        <img src="{{row['actor_imagelink']}}" class="rounded-circle" width="200" height="200"
+            alt="Cinque Terre"><br /><br />
+        <h3> Actor Name - {{row["actor_name"]}}</h3>
+        <p>{{row['actor_born']}} | {{row['actor_height']}} | {{row['actor_nickname']}}</p>
+        <div class="row justify-content-md-center">
+            <div class="col-sm-12">
+                <div id="piechart"></div>
+            </div>
+        </div>
+        <p><b>Bio</b> <br> {{row['actor_bio']}}</p>
+    </div>
+
+    <div id="loader" class="center"></div>
+
+    <script>
+        document.onreadystatechange = function () {
+            if (document.readyState !== "complete") {
+                document.querySelector(
+                    "body").style.visibility = "hidden";
+                document.querySelector(
+                    "#loader").style.visibility = "visible";
+            } else {
+                document.querySelector(
+                    "#loader").style.display = "none";
+                document.querySelector(
+                    "body").style.visibility = "visible";
+            }
+        }; 
+    </script>
+
+
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+{% if personality %}
+<script type="text/javascript">
+// Load google charts
+google.charts.load('current', {'packages':['corechart']});
+google.charts.setOnLoadCallback(drawChart);
+
+// Draw the chart and set the chart values
+function drawChart() {
+  var data = google.visualization.arrayToDataTable([
+  ['Personality Type', 'Percentile', { role: 'style' }],
+  ['Openness', {{personality['Openness']}}, '#003f5c'],
+  ['Conscientiousness', {{personality['Conscientiousness']}}, '#2f4b7c'],
+  ['Extraversion', {{personality['Extraversion']}}, '#665191'],
+  ['Agreeableness', {{personality['Agreeableness']}}, '#a05195'],
+  ['Emotional range', {{personality['Emotional range']}}, '#d45087']
+]);
+
+  // Optional; add a title and set the width and height of the chart
+  var options = {'title':'Personality Trait Prediction', 'height':400, legend: { position: "none" }};
+
+  // Display the chart inside the <div> element with id="piechart"
+  var chart = new google.visualization.ColumnChart(document.getElementById('piechart'));
+  chart.draw(data, options);
+}
+</script>
+{% endif %}
+</body>
+
+</html>

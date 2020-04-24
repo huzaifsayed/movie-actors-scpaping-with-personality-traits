@@ -1,0 +1,17 @@
+For Personality - 
+cd personality
+python get_personality.py
+
+For Scraper - 
+cd scraper
+scrapy crawl actors
+
+For Flask -
+cd flask
+python flask_app.py
+
+Libraries Used - 
+pip install scrapy
+pip install scrapy_proxy_pool
+pip install flask
+pip install watson-developer-cloud
